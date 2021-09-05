@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+set -o nounset
+set -o pipefail
+#set -o xtrace
+
+eval "$(curl -sLS https://github.com/bkahlert/-/raw/main/semantics.sh)"
+
+prompt_continue "Setting up this Mac for development"
+cd "${DIR}" || exit 1
+
+sudo_forever
+
+echo_start "Installing Xcode Command Line Tools"
+sudo xcode-select --install &>/dev/null || true
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer >/dev/null
+sudo chmod +x scripts/accept_xcode_license
+sudo scripts/accept_xcode_license >/dev/null
+echo_success
+
+echo_start "Testing for Homebrew"
+export PATH="/opt/homebrew/bin:${PATH}"
+which brew &>/dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; brew update
+echo_success
+
+echo_start "Testing for Python3"
+export PATH="${HOME}/Library/Python/3.9/bin:${PATH}"
+which pip3 &>/dev/null || die "Please install Python3."
+pip3 install --upgrade pip
+echo_success
+
+echo_start "Testing for Ansible"
+which ansible &>/dev/null || die "Please install Ansible."
+echo_success
+
+echo_start "Installing Ansible requirements"
+ansible-galaxy install --force -r requirements.yml
+echo_success
+
+echo_start "Executing Ansible playbook"
+ansible-playbook main.yml --ask-become-pass --step
+echo_success

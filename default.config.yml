@@ -2,7 +2,7 @@
 downloads: ~/.ansible-downloads/
 
 configure_dotfiles: true
-configure_terminal: true
+configure_terminal: false
 configure_osx: true
 
 # Set to 'true' to configure the Dock via dockutil.
@@ -24,44 +24,34 @@ sudoers_custom_config: ''
 #   # Allow users in admin group to use sudo with no password.
 #   %admin ALL=(ALL) NOPASSWD: ALL
 
-dotfiles_repo: https://github.com/geerlingguy/dotfiles.git
+dotfiles_repo: https://github.com/bkahlert/dotfiles.git
 dotfiles_repo_accept_hostkey: true
-dotfiles_repo_local_destination: ~/Development/GitHub/dotfiles
+dotfiles_repo_local_destination: ~/Development/com.bkahlert/dotfiles
 dotfiles_files:
-  - .zshrc
+  - .gitconfig
   - .gitignore
-  - .inputrc
   - .osx
-  - .vimrc
+  - .zshrc
 
 homebrew_installed_packages:
-  # - ansible # Installed via Pip.
   - autoconf
   - bash-completion
-  - doxygen
-  - gettext
-  - gifsicle
+  - bat
   - git
-  - github/gh/gh
-  - go
   - gpg
-  - httpie
-  - iperf
-  - libevent
-  - sqlite
+  - gradle
+  - helm
+  - jq
+  - maven
   - mcrypt
-  - nmap
   - node
-  - nvm
-  - php
-  - ssh-copy-id
-  - cowsay
-  - readline
+  - openjdk
   - openssl
-  - pv
-  - wget
-  - wrk
-  - zsh-history-substring-search
+  - ssh-copy-id
+  - sshfs
+  - sshpass
+  - xz
+  - zsh-syntax-highlighting
 
 homebrew_taps:
   - homebrew/core
@@ -69,23 +59,36 @@ homebrew_taps:
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-  - chromedriver
+  - balenaetcher
+  - browserosaurus
+  - caffeine
+  - colorsnapper
+  - clickup
+  - daisydisk
   - docker
   - dropbox
   - firefox
+  - iterm2
+  - chromedriver
   - google-chrome
+  - freesmug-chromium
+  - microsoft-edge
   - handbrake
-  - licecap
   - sequel-ace
   - slack
   - sublime-text
   - transmit
+  - virtualbox
+  - virtualbox-extension-pack
   - vagrant
+  - whatsapp
 
 # See `geerlingguy.mas` role documentation for usage instructions.
-mas_installed_apps: []
-mas_email: ""
-mas_password: ""
+mas_installed_app_ids:
+  - 1482490089 # Tampermonkey
+  - 1444383602 # Goodnotes 5
+  - 403304796 # iNet Network Scanner
+  - 587512244 # Kaleidoscope
 
 osx_script: "~/.osx --no-restart"
 
