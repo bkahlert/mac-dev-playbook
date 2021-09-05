@@ -35,13 +35,13 @@ dotfiles_files:
 
 homebrew_installed_packages:
   - autoconf
-  - bash-completion
   - bat
   - git
   - gpg
   - gradle
   - helm
   - jq
+#  - lastpass
   - maven
   - mcrypt
   - node
@@ -57,6 +57,7 @@ homebrew_taps:
   - homebrew/core
   - homebrew/cask
 
+homebrew_cask_accept_external_apps: true
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   - balenaetcher
@@ -65,30 +66,28 @@ homebrew_cask_apps:
   - colorsnapper
   - clickup
   - daisydisk
-  - docker
+#  - docker
   - dropbox
   - firefox
   - iterm2
-  - chromedriver
   - google-chrome
   - freesmug-chromium
   - microsoft-edge
   - handbrake
   - sequel-ace
   - slack
-  - sublime-text
   - transmit
-  - virtualbox
-  - virtualbox-extension-pack
+#  - virtualbox
+#  - virtualbox-extension-pack
   - vagrant
   - whatsapp
 
 # See `geerlingguy.mas` role documentation for usage instructions.
-mas_installed_app_ids:
-  - 1482490089 # Tampermonkey
-  - 1444383602 # Goodnotes 5
-  - 403304796 # iNet Network Scanner
-  - 587512244 # Kaleidoscope
+mas_installed_apps:
+  - {id: 1482490089, name: "Tampermonkey"}
+  - {id: 1444383602, name: "GoodNotes 5"}
+  - {id: 403304796, name: "iNet Network Scanner"}
+  - {id: 587512244, name: "Kaleidoscope"}
 
 osx_script: "~/.osx --no-restart"
 
@@ -114,21 +113,6 @@ pip_packages: []
 
 # Set to 'true' to configure Sublime Text.
 configure_sublime: false
-sublime_base_path: '~/Library/Application Support/Sublime Text'
-sublime_config_path: "Packages/User"
-sublime_package_control:
-  - "DocBlockr"
-  - "Dockerfile Syntax Highlighting"
-  - "FileDiffs"
-  - "GitHub Flavored Markdown Preview"
-  - "Jinja2"
-  - "Package Control"
-  - "PHP-Twig"
-  - "Pretty JSON"
-  - "SublimeLinter"
-  - "SublimeLinter-contrib-yamllint"
-  - "TrailingSpaces"
-  - "WordCount"
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks: []

@@ -17,25 +17,25 @@ sudo chmod +x scripts/accept_xcode_license
 sudo scripts/accept_xcode_license >/dev/null
 echo_success
 
-echo_start "Testing for Homebrew"
-export PATH="/opt/homebrew/bin:${PATH}"
-which brew &>/dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; brew update
-echo_success
-
 echo_start "Testing for Python3"
 export PATH="${HOME}/Library/Python/3.9/bin:${PATH}"
 which pip3 &>/dev/null || die "Please install Python3."
 pip3 install --upgrade pip
 echo_success
 
+echo_start "Testing for Homebrew"
+export PATH="/opt/homebrew/bin:${PATH}"
+which brew &>/dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; brew update
+echo_success
+
 echo_start "Testing for Ansible"
-which ansible &>/dev/null || die "Please install Ansible."
+which ansible &>/dev/null || pip3 install ansible
 echo_success
 
 echo_start "Installing Ansible requirements"
-ansible-galaxy install --force -r requirements.yml
+ansible-galaxy install -r requirements.yml
 echo_success
 
 echo_start "Executing Ansible playbook"
-ansible-playbook main.yml --ask-become-pass --step
+ansible-playbook main.yml
 echo_success
