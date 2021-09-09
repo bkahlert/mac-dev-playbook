@@ -5,7 +5,18 @@ set -o pipefail
 
 eval "$(curl -sLS https://github.com/bkahlert/-/raw/main/semantics.sh)"
 
-prompt_continue "Setting up this Mac for development"
+yes=0
+while test $# != 0
+do
+    case "$1" in
+    -y) yes=1 ;;
+    --yes) yes=1 ;;
+    --) shift; break;;
+    *)  usage ;;
+    esac
+    shift
+done
+[[ $yes -eq 1 ]] || prompt_continue "Setting up this Mac for development"
 cd "${DIR}" || exit 1
 
 sudo_forever
@@ -17,15 +28,12 @@ sudo chmod +x scripts/accept_xcode_license
 sudo scripts/accept_xcode_license >/dev/null
 echo_success
 
-echo_start "Testing for Python3"
-export PATH="${HOME}/Library/Python/3.9/bin:${PATH}"
-which pip3 &>/dev/null || die "Please install Python3."
-pip3 install --upgrade pip
+echo_start "Testing for Homebrew"
+which brew &>/dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; brew update
 echo_success
 
-echo_start "Testing for Homebrew"
-export PATH="/opt/homebrew/bin:${PATH}"
-which brew &>/dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; brew update
+echo_start "Testing for Python3"
+which pip3 &>/dev/null || brew install python
 echo_success
 
 echo_start "Testing for Ansible"
