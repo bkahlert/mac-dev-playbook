@@ -35,16 +35,19 @@
       when: configure_terminal
       tags: ['terminal']
 
-    - import_tasks: tasks/osx.yml
+    - name: macOS customizations
+      import_tasks: tasks/osx.yml
       import_tasks: tasks/osx.yml
       when: configure_osx
       tags: ['osx']
 
-    - import_tasks: tasks/extra-packages.yml
+    - name: Install extra packages
+      import_tasks: tasks/extra-packages.yml
       import_tasks: tasks/extra-packages.yml
       tags: ['extra-packages']
 
-    - import_tasks: tasks/sublime-text.yml
+    - name: Customize sublime
+      import_tasks: tasks/sublime-text.yml
       import_tasks: tasks/sublime-text.yml
       when: configure_sublime
       tags: ['sublime-text']

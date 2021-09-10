@@ -145,7 +145,6 @@ homebrew_installed_packages:
   - openjdk
   - openssl
   - optipng
-  - sdkman
   - ssh-copy-id
   - sshpass
   - tldr # type "tldr x" instead of "man x" for examples for a command
@@ -177,6 +176,7 @@ homebrew_cask_apps:
   - imageoptim
   - iterm2
   - lastpass
+  - lens # Kubernetes IDE
   - google-chrome
   - microsoft-edge
   - moom
