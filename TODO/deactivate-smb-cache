@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "[default]" | sudo tee -a /etc/nsmb.conf
+echo "dir_cache_off=yes" | sudo tee -a /etc/nsmb.conf

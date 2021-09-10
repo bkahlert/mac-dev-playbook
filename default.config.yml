@@ -130,20 +130,25 @@ dotfiles_files:
 #homebrew_upgrade_all_packages: true
 homebrew_installed_packages:
   - autoconf
+  - antigen
   - bat
   - git
   - gpg
   - gradle
   - helm
   - jq
+  - kubectx # kubectl context switcher + kubens — kubectl namespace switcher
   - maven
   - mcrypt
   - node
+  - python
   - openjdk
   - openssl
   - optipng
+  - sdkman
   - ssh-copy-id
   - sshpass
+  - tldr # type "tldr x" instead of "man x" for examples for a command
   - wget
   - xz
   - zsh-syntax-highlighting
@@ -151,6 +156,7 @@ homebrew_installed_packages:
 homebrew_taps:
   - homebrew/core
   - homebrew/cask
+  - homebrew/cask-fonts
   - homebrew/cask-versions
 
 #homebrew_cask_accept_external_apps: true

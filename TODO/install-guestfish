@@ -1,0 +1,5 @@
+#!/bin/sh
+git clone https://github.com/cmattoon/guestfish
+cp guestfish/scripts/guestfi.sh /usr/local/bin/guestfi.sh
+chmod +x /usr/local/bin/guestfi.sh
+rm -rf guestfish

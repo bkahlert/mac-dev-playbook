@@ -1,0 +1,26 @@
+#!/bin/sh
+(
+cat <<'HERE-MACOS-SUDOERS-VAGRANT-PLUGIN'
+# vagrant-hostmanager https://github.com/devopsgroup-io/vagrant-hostmanager
+
+Cmnd_Alias VAGRANT_HOSTMANAGER_UPDATE = /bin/cp /home/*/.vagrant.d/tmp/hosts.local /etc/hosts
+
+%admin ALL=(root) NOPASSWD: VAGRANT_HOSTMANAGER_UPDATE
+
+# See https://github.com/cogitatio/vagrant-hostsupdater#readme
+# vagrant plugin vagrant-hostsupdater.
+
+Cmnd_Alias VAGRANT_HOSTS_ADD = /bin/sh -c echo "*" >> /etc/hosts
+Cmnd_Alias VAGRANT_HOSTS_REMOVE = /usr/bin/sed -i -e /*/ d /etc/hosts
+
+%admin ALL=(root) NOPASSWD: VAGRANT_HOSTS_ADD, VAGRANT_HOSTS_REMOVE
+
+# vagrant synced-folders https://www.vagrantup.com/docs/synced-folders/nfs.html
+
+Cmnd_Alias VAGRANT_EXPORTS_ADD = /usr/bin/tee -a /etc/exports
+Cmnd_Alias VAGRANT_NFSD = /sbin/nfsd restart
+Cmnd_Alias VAGRANT_EXPORTS_REMOVE = /usr/bin/sed -E -e /*/ d -ibak /etc/exports
+
+%admin ALL=(root) NOPASSWD: VAGRANT_EXPORTS_ADD, VAGRANT_NFSD, VAGRANT_EXPORTS_REMOVE
+HERE-MACOS-SUDOERS-VAGRANT-PLUGIN
+) | sudo tee /etc/sudoers.d/macos-sudoers-vagrant-plugin

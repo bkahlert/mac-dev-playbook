@@ -1,0 +1,7 @@
+#!/bin/sh
+brew install glib-networking
+mkdir /usr/local/Cellar/glib-networking
+cd /usr/local/Cellar/glib-networking
+ln -s $(ls -dtr  */ | tail -n 1) "2.64.3"
+
+brew install chafa

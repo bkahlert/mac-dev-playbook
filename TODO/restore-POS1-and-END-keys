@@ -1,0 +1,9 @@
+#!/bin/sh
+PWD_BACKUP=$PWD
+KEY_BINDINGS_SOURCE_DIR="${PWD}/Users/$(whoami)/Library/KeyBindings"
+KEY_BINDINGS_DEST_DIR="$HOME/Library/KeyBindings"
+set -x
+cd "${KEY_BINDINGS_SOURCE_DIR}"
+mkdir -p "${KEY_BINDINGS_DEST_DIR}" && cp *.* "${KEY_BINDINGS_DEST_DIR}"
+cd "${PWD_BACKUP}"
+{ set +x; } 2>/dev/null

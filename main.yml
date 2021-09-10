@@ -55,3 +55,7 @@
         loop_var: outer_item
       with_fileglob: "{{ post_provision_tasks|default(omit) }}"
       tags: ['post']
+
+    - name: Install jetbrains font (modified for Powerlevel10k)
+      ansible.builtin.shell: "brew install homebrew/cask-fonts/font-jetbrains-mono-nerd-font"
+      tags: ['font']

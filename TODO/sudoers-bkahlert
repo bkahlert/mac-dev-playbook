@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "bkahlert ALL=NOPASSWD:/bin/dd" | sudo tee /etc/sudoers.d/bkahlert

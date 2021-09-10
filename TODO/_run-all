@@ -1,0 +1,23 @@
+#!/bin/sh
+argv0=$(echo "$0"|sed -e 's,\\,/,g');basename=$(basename $0);basedir=$(dirname "$(readlink "$0"||echo "$argv0")");osname="$(uname -s)";if [[ $osname = Darwin* ]];then basedir="$(cd "$(dirname "$argv0")"&&pwd)";elif [[ $osname = Linux* ]];then basedir=$(dirname "$(readlink -f "$0"||echo "$argv0")");elif [[ osname = *CYGWIN* ]];then basedir=`cygpath -w "$basedir"`;elif [[ osname = *MSYS* ]];then basedir=`cygpath -w "$basedir"`;fi
+cd "${basedir}"
+SELF=$(basename "$0")
+
+for SCRIPT in *
+do
+  case "${SCRIPT}" in
+  *~|*.bak|*${SELF})
+     printf "\n\e[02mSkipping \e[34m${SCRIPT}\e[m\n"
+     continue
+  ;;
+  *)
+     chmod +x "${SCRIPT}"
+     if [ -f "${SCRIPT}" -a -x "${SCRIPT}" ]; then
+       printf "\n\e[01mStarting \e[34m${SCRIPT}\e[m...\n"
+       sh "${SCRIPT}" $@
+	   { set +x; } 2>/dev/null
+       printf "\e[01mFinished \e[34m${SCRIPT}\e[m.\n\n"
+     fi
+  ;;
+  esac
+done

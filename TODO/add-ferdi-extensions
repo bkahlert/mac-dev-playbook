@@ -1,0 +1,4 @@
+#!/bin/sh
+ln -s "${HOME}/Development/playground/com.bkahlert.ferdi" "${HOME}/Library/Application Support/Ferdi/recipes/dev"
+ln -s "${HOME}/Library/Application Support/Ferdi/recipes" "${HOME}/Development/playground/com.bkahlert.ferdi/MORE RECIPES"
+ln -s "${HOME}/Development/playground/getferdi/recipes/uncompressed" "${HOME}/Development/playground/com.bkahlert.ferdi/EVEN MORE RECIPES"

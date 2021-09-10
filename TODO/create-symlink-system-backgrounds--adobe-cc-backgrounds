@@ -1,0 +1,3 @@
+#!/bin/sh
+cd "/System/Library/Desktop Pictures"
+sudo ln -s "/Users/$(whoami)/Creative Cloud Files/Home/Backgrounds'  Adobe\ CC

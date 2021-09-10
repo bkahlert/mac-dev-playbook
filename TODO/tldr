@@ -1,0 +1,3 @@
+#!/bin/sh
+npm install -g tldr  # replacement for man with focus on examples
+tldr --update

@@ -1,0 +1,2 @@
+#!/bin/sh
+brew install navi # An interactive cheatsheet tool for the command-line and application launchers.
