@@ -120,13 +120,23 @@ dotfiles_repo: https://github.com/bkahlert/dotfiles.git
 dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/Development/com.bkahlert/dotfiles
 dotfiles_files:
+  - .oh-my-zsh
   - .gitconfig
-  - .gitignore
+  - .gitignore_global
+  - .iterm2_shell_integration.zsh
   - .osx
+  - .p10k.zsh
   - .zshrc
 
-
 # https://github.com/geerlingguy/ansible-collection-mac/blob/master/roles/homebrew/README.md
+homebrew_taps:
+  - homebrew/core
+  - homebrew/cask
+  - homebrew/cask-fonts
+  - homebrew/cask-versions
+  - boz/repo
+  - johanhaleby/kubetail
+
 #homebrew_upgrade_all_packages: true
 homebrew_installed_packages:
   - autoconf
@@ -137,7 +147,9 @@ homebrew_installed_packages:
   - gradle
   - helm
   - jq
+  - boz/repo/kail # tail for Kubernetes pod logs
   - kubectx # kubectl context switcher + kubens — kubectl namespace switcher
+  - johanhaleby/kubetail # tail for logs of multiple Kubernetes pods
   - maven
   - mcrypt
   - node
@@ -146,22 +158,18 @@ homebrew_installed_packages:
   - openssl
   - optipng
   - ssh-copy-id
+  - sshfs
   - sshpass
   - tldr # type "tldr x" instead of "man x" for examples for a command
+  - tmux
   - wget
   - xz
   - zsh-syntax-highlighting
 
-homebrew_taps:
-  - homebrew/core
-  - homebrew/cask
-  - homebrew/cask-fonts
-  - homebrew/cask-versions
-
 #homebrew_cask_accept_external_apps: true
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-#  - adobe-creative-cloud
+  #  - adobe-creative-cloud
   - balenaetcher
   - browserosaurus
   - caffeine
@@ -181,13 +189,14 @@ homebrew_cask_apps:
   - microsoft-edge
   - moom
   - handbrake
+  - osxfuse # needed for sshfs
   - sequel-ace
   - slack
   - transmit
   - vagrant
   - vagrant-manager
   - virtualbox
-#  - virtualbox-extension-pack
+  #  - virtualbox-extension-pack
   - vlc
 
 # See `geerlingguy.mas` role documentation for usage instructions.
