@@ -3,7 +3,7 @@ set -o nounset
 set -o pipefail
 #set -o xtrace
 
-eval "$(curl -sLS https://github.com/bkahlert/-/raw/main/semantics.sh)"
+eval "$(curl -sLS https://github.com/bkahlert/-/raw/master/semantics.sh)"
 
 yes=0
 while test $# != 0

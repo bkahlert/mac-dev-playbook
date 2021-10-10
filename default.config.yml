@@ -86,27 +86,30 @@ dockitems_persist:
   - name: Coda 2
     path: "/Applications/Coda 2.app"
     pos: 24
+  - name: Terminal
+    path: "/Applications/Terminal.app"
+    pos: 25
   - name: iTerm
     path: "/Applications/iTerm.app"
-    pos: 25
+    pos: 26
   - name: IntelliJ IDEA
     path: "/Users/bkahlert/Library/Application Support/JetBrains/Toolbox/apps/IDEA-U/ch-1/212.5080.55"
-    pos: 26
+    pos: 27
   - name: Visual Studio Code
     path: "/Applications/Visual Studio Code.app"
-    pos: 27
+    pos: 28
   - name: Xcode
     path: "/Applications/Xcode.app"
-    pos: 28
+    pos: 29
   - name: Paw
     path: "/Applications/SetApp/Paw.app"
-    pos: 29
+    pos: 30
   - name: Postman
     path: "/Applications/Postman.app"
-    pos: 30
+    pos: 31
   - name: Transmit
     path: "/Applications/Transmit.app"
-    pos: 31
+    pos: 32
 
 
 configure_sudoers: false
@@ -120,12 +123,18 @@ dotfiles_repo: https://github.com/bkahlert/dotfiles.git
 dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/Development/com.bkahlert/dotfiles
 dotfiles_files:
+  - .aliases
+  - .bash_profile
+  - .bashrc
   - .oh-my-zsh
   - .gitconfig
+  - .gitignore
   - .gitignore_global
   - .iterm2_shell_integration.zsh
   - .osx
   - .p10k.zsh
+  - .tmux.conf
+  - .whalebrew
   - .zshrc
 
 # https://github.com/geerlingguy/ansible-collection-mac/blob/master/roles/homebrew/README.md
@@ -135,7 +144,7 @@ homebrew_taps:
   - homebrew/cask-fonts
   - homebrew/cask-versions
   - boz/repo
-  - johanhaleby/kubetail
+  - johanhaleby/kubetail/kubetail
 
 #homebrew_upgrade_all_packages: true
 homebrew_installed_packages:
@@ -148,6 +157,7 @@ homebrew_installed_packages:
   - helm
   - jq
   - boz/repo/kail # tail for Kubernetes pod logs
+  - krew # Homebrew for kubectl; e.g. kubectl krew install ingress-nginx
   - kubectx # kubectl context switcher + kubens — kubectl namespace switcher
   - johanhaleby/kubetail # tail for logs of multiple Kubernetes pods
   - maven
@@ -162,6 +172,7 @@ homebrew_installed_packages:
   - sshpass
   - tldr # type "tldr x" instead of "man x" for examples for a command
   - tmux
+  - whalebrew # Homebrew for Docker
   - wget
   - xz
   - zsh-syntax-highlighting
@@ -190,6 +201,7 @@ homebrew_cask_apps:
   - moom
   - handbrake
   - osxfuse # needed for sshfs
+  - postman
   - sequel-ace
   - slack
   - transmit
