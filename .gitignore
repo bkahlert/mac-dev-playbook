@@ -1,4 +1,5 @@
-/.idea
+.idea
+*.iml
 *.vagrant
 .DS_Store
 *.retry

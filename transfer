@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+die() {
+  local pattern=' ✘ %s\n'
+  [ ! -t 2 ] || pattern="$(tput setaf 1)${pattern}$(tput sgr0)"
+  # shellcheck disable=SC2059
+  printf "$pattern" "${*:-error in line ${BASH_LINENO[0]}}" >&2
+  exit 1
+}
+
+declare user && user="$(id -un)"
+declare -r source="/Volumes/$user"
+declare -r destination="/Users/$user"
+
+[ -d "$source" ] || die "Source not found: $source"
+[ -d "$destination" ] || die "Destination not found: $destination"
+
+for file in \
+  '.gradle/gradle.properties' \
+  '.kube' \
+  '.ssh' \
+  '.m2' \
+  '.z''lua' \
+  '.zsh''env' \
+  'Development' \
+  'Library/KeyBindings' \
+  'Library/Application Support/JetBrains' \
+  'Library/Application Support/iStat Menus' \
+  'Library/Application Support/iTerm2'; do
+  rsync -vaz \
+    --info=progress2 \
+    --exclude '.DS_Store' \
+    --exclude '.gradle' \
+    --exclude 'build' \
+    --exclude 'node_modules' \
+    "$source/$file/" \
+    "$destination/$file"
+done

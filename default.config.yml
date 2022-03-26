@@ -12,7 +12,7 @@ dockitems_remove:
   - Launchpad
   - TV
   - Podcasts
-  - App Store
+  - 'App Store'
   - Reminders
   - Notes
   - Photos
@@ -20,9 +20,9 @@ dockitems_persist:
   - name: Safari
     path: "/Applications/Safari.app"
     pos: 2
-  - name: Firefox
-    path: "/Applications/Firefox.app"
-    pos: 3
+  # - name: Firefox
+  #   path: "/Applications/Firefox.app"
+  #   pos: 3
   - name: Firefox Developer Edition
     path: "/Applications/Firefox Developer Edition.app"
     pos: 4
@@ -32,24 +32,24 @@ dockitems_persist:
   - name: Microsoft Edge
     path: "/Applications/Microsoft Edge.app"
     pos: 6
-  - name: Brave Browser
-    path: "/Applications/Brave Browser.app"
-    pos: 7
+  # - name: Brave Browser
+  #   path: "/Applications/Brave Browser.app"
+  #   pos: 7
   - name: Mail
     path: "/System/Applications/Mail.app"
     pos: 8
-  - name: Spark
-    path: "/Applications/Spark.app"
-    pos: 9
-  - name: Unibox
-    path: "/Applications/Unibox.app"
-    pos: 10
-  - name: Microsoft Outlook
-    path: "/Applications/Microsoft Outlook.app"
-    pos: 11
-  - name: Microsoft Teams
-    path: "/Applications/Microsoft Teams.app"
-    pos: 12
+  # - name: Spark
+  #   path: "/Applications/Spark.app"
+  #   pos: 9
+  # - name: Unibox
+  #   path: "/Applications/Unibox.app"
+  #   pos: 10
+  # - name: Microsoft Outlook
+  #   path: "/Applications/Microsoft Outlook.app"
+  #   pos: 11
+  # - name: Microsoft Teams
+  #   path: "/Applications/Microsoft Teams.app"
+  #   pos: 12
   - name: Contacts
     path: "/System/Applications/Contacts.app"
     pos: 13
@@ -59,57 +59,57 @@ dockitems_persist:
   - name: Messages
     path: "/System/Applications/Messages.app"
     pos: 15
-  - name: ChatMate for WhatsApp
-    path: "/Applications/ChatMate for WhatsApp.app"
-    pos: 16
+  # - name: ChatMate for WhatsApp
+  #   path: "/Applications/ChatMate for WhatsApp.app"
+  #   pos: 16
   - name: Music
     path: "/System/Applications/Music.app"
     pos: 17
   - name: System Preferences
     path: "/System/Applications/System Preferences.app"
     pos: 18
-  - name: Ferdi
-    path: "/Applications/Ferdi.app"
-    pos: 19
-  - name: Adobe Illustrator 2021
-    path: "/Applications/Adobe Illustrator 2021/Adobe Illustrator 2021.app"
-    pos: 20
-  - name: Adobe Photoshop 2021
-    path: "/Applications/Adobe Photoshop 2021/Adobe Photoshop 2021.app"
-    pos: 21
-  - name: GitHub Desktop
-    path: "/Applications/GitHub Desktop.app"
-    pos: 22
-  - name: Fork
-    path: "/Applications/Fork.app"
-    pos: 23
-  - name: Coda 2
-    path: "/Applications/Coda 2.app"
-    pos: 24
+  # - name: Ferdi
+  #   path: "/Applications/Ferdi.app"
+  #   pos: 19
+  # - name: Adobe Illustrator 2022
+  #   path: "/Applications/Adobe Illustrator 2022/Adobe Illustrator 2022.app"
+  #   pos: 20
+  # - name: Adobe Photoshop 2022
+  #   path: "/Applications/Adobe Photoshop 2022/Adobe Photoshop 2022.app"
+  #   pos: 21
+  # - name: GitHub Desktop
+  #   path: "/Applications/GitHub Desktop.app"
+  #   pos: 22
+  # - name: Fork
+  #   path: "/Applications/Fork.app"
+  #   pos: 23
+  # - name: Coda 2
+  #   path: "/Applications/Coda 2.app"
+  #   pos: 24
   - name: Terminal
-    path: "/Applications/Terminal.app"
+    path: "/System/Applications/Utilities/Terminal.app"
     pos: 25
   - name: iTerm
     path: "/Applications/iTerm.app"
     pos: 26
   - name: IntelliJ IDEA
-    path: "/Users/bkahlert/Library/Application Support/JetBrains/Toolbox/apps/IDEA-U/ch-1/212.5080.55"
+    path: "/Users/bkahlert/Library/Application Support/JetBrains/Toolbox/apps/IDEA-U/ch-0/213.7172.25/IntelliJ IDEA.app"
     pos: 27
-  - name: Visual Studio Code
-    path: "/Applications/Visual Studio Code.app"
-    pos: 28
-  - name: Xcode
-    path: "/Applications/Xcode.app"
-    pos: 29
-  - name: Paw
-    path: "/Applications/SetApp/Paw.app"
-    pos: 30
+  # - name: Visual Studio Code
+  #   path: "/Applications/Visual Studio Code.app"
+  #   pos: 28
+  # - name: Xcode
+  #   path: "/Applications/Xcode.app"
+  #   pos: 29
+  # - name: Paw
+  #   path: "/Applications/SetApp/Paw.app"
+  #   pos: 30
   - name: Postman
     path: "/Applications/Postman.app"
     pos: 31
-  - name: Transmit
-    path: "/Applications/Transmit.app"
-    pos: 32
+  # - name: Transmit
+  #   path: "/Applications/Transmit.app"
+  #   pos: 32
 
 
 configure_sudoers: false
@@ -123,34 +123,43 @@ dotfiles_repo: https://github.com/bkahlert/dotfiles.git
 dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/Development/com.bkahlert/dotfiles
 dotfiles_files:
+  - .actrc
   - .aliases
   - .bash_profile
   - .bashrc
-  - .oh-my-zsh
+  - .config
+  # - .oh-my-zsh
   - .gitconfig
   - .gitignore
   - .gitignore_global
   - .iterm2_shell_integration.zsh
   - .osx
   - .p10k.zsh
-  - .tmux.conf
+  # - .tmux.conf
   - .whalebrew
+  - .zprofile
   - .zshrc
 
 # https://github.com/geerlingguy/ansible-collection-mac/blob/master/roles/homebrew/README.md
-homebrew_taps:
+community.general.homebrew_tap:
   - homebrew/core
   - homebrew/cask
   - homebrew/cask-fonts
   - homebrew/cask-versions
   - boz/repo
-  - johanhaleby/kubetail/kubetail
+  - johanhaleby/kubetail
+  - aws/tap
+  # - bkahlert/repo
 
 #homebrew_upgrade_all_packages: true
 homebrew_installed_packages:
   - autoconf
   - antigen
+  - ag # code search, ignores .gitignore automatically; `ag ...`
+  - awscli
+  - aws/tap/aws-sam-cli
   - bat
+  - chafa # ANSI art renderer
   - git
   - gpg
   - gradle
@@ -159,20 +168,26 @@ homebrew_installed_packages:
   - boz/repo/kail # tail for Kubernetes pod logs
   - krew # Homebrew for kubectl; e.g. kubectl krew install ingress-nginx
   - kubectx # kubectl context switcher + kubens — kubectl namespace switcher
-  - johanhaleby/kubetail # tail for logs of multiple Kubernetes pods
+  - lastpass-cli # CLI for lastpass
+  # - ansible-vault-pass-client # Makes Ansible use lastpass
+  - johanhaleby/kubetail/kubetail # tail for logs of multiple Kubernetes pods
+  - lua # required for z.lua
   - maven
   - mcrypt
   - node
+  - nvm
   - python
+  - rsync # as of 2023-06-03, macOS ships with rsync 2.x
   - openjdk
   - openssl
   - optipng
   - ssh-copy-id
-  - sshfs
-  - sshpass
+  # - sshfs
+  - hudochenkov/sshpass/sshpass
   - tldr # type "tldr x" instead of "man x" for examples for a command
   - tmux
   - whalebrew # Homebrew for Docker
+  - watch
   - wget
   - xz
   - zsh-syntax-highlighting
@@ -180,7 +195,7 @@ homebrew_installed_packages:
 #homebrew_cask_accept_external_apps: true
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-  #  - adobe-creative-cloud
+  # - adobe-creative-cloud
   - balenaetcher
   - browserosaurus
   - caffeine
@@ -194,49 +209,50 @@ homebrew_cask_apps:
   - firefox-developer-edition
   - imageoptim
   - iterm2
+  - karabiner-elements
   - lastpass
   - lens # Kubernetes IDE
   - google-chrome
   - microsoft-edge
   - moom
   - handbrake
-  - osxfuse # needed for sshfs
+  # - osxfuse # needed for sshfs
   - postman
   - sequel-ace
   - slack
   - transmit
   - vagrant
   - vagrant-manager
-  - virtualbox
-  #  - virtualbox-extension-pack
+  # - virtualbox
+  # - virtualbox-extension-pack
   - vlc
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 # https://github.com/geerlingguy/ansible-collection-mac/blob/master/roles/mas/README.md
 mas_installed_apps:
-  - {id: 1482490089, name: "Tampermonkey"}
-  - {id: 1444383602, name: "GoodNotes 5"}
-  - {id: 403304796, name: "iNet Network Scanner"}
-  - {id: 587512244, name: "Kaleidoscope"}
+  - { id: 1482490089, name: "Tampermonkey" }
+  - { id: 1444383602, name: "GoodNotes 5" }
+  - { id: 403304796, name: "iNet Network Scanner" }
+  - { id: 587512244, name: "Kaleidoscope" }
 
 osx_script: "~/.osx --no-restart"
 
 # Install packages from other package managers.
 # Note: You are responsible for making sure the required package managers are
 # installed, eg. through homebrew.
-composer_packages: []
+composer_packages: [ ]
 # - name: drush
 #   state: present # present/absent, default: present
 #   version: "^8.1" # default: N/A
-npm_packages: []
+npm_packages: [ ]
 # - name: webpack
 #   state: present # present/absent/latest, default: present
 #   version: "^2.6" # default: N/A
-pip_packages: []
+pip_packages: [ ]
 # - name: mkdocs
 #   state: present # present/absent/latest, default: present
 #   version: "0.16.3" # default: N/A
-gem_packages: []
+gem_packages: [ ]
 # - name: bundler
 #   state: present # present/absent/latest, default: present
 #   version: "~> 1.15.1" # default: N/A
@@ -245,4 +261,4 @@ gem_packages: []
 configure_sublime: false
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
-post_provision_tasks: []
+post_provision_tasks: [ ]

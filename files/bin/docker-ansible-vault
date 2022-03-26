@@ -1,0 +1,6 @@
+#!/bin/bash
+IMAGE="willhallonline/ansible:latest"
+#docker run --rm -it "${IMAGE}" /bin/sh -c "find / -type d | grep "ansible_mitogen/plugins" | sort | head -n 1"
+docker run --rm -it \
+	-v $(pwd):/ansible:ro \
+	--workdir=/ansible ${IMAGE} ansible-vault $@

@@ -1,49 +1,91 @@
 #!/usr/bin/env bash
-set -o nounset
-set -o pipefail
-#set -o xtrace
-
-eval "$(curl -sLS https://github.com/bkahlert/-/raw/master/semantics.sh)"
-
-yes=0
-while test $# != 0
-do
-    case "$1" in
-    -y) yes=1 ;;
-    --yes) yes=1 ;;
-    --) shift; break;;
-    *)  usage ;;
+# bashsupport disable=BP5004
+set -euo pipefail
+#source <(curl -LfsS https://github.com/bkahlert/logr/raw/master/logr.sh)
+# prints a banner
+banr() {
+  echo "$@"
+}
+echo "$SHELL"
+# runs a command
+logr() {
+  declare positional=0
+  while (($#)); do
+    case $1 in
+      --)
+        positional=1
+        shift
+        break
+        ;;
+      *)
+        shift
+        ;;
     esac
-    shift
-done
-[[ $yes -eq 1 ]] || prompt_continue "Setting up this Mac for development"
-cd "${DIR}" || exit 1
+  done
+  "$@"
+}
+# NOOP
+prompt4() {
+  return 0
+}
 
-sudo_forever
+# Install homebrew
+install_homebrew() {
+  command -v brew >/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/bkahlert/.zprofile
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  brew update
+}
 
-echo_start "Installing Xcode Command Line Tools"
-sudo xcode-select --install &>/dev/null || true
-sudo xcode-select -s /Applications/Xcode.app/Contents/Developer >/dev/null
-sudo chmod +x scripts/accept_xcode_license
-sudo scripts/accept_xcode_license >/dev/null
-echo_success
+# Installs Python
+install_python() {
+  export PATH="$HOME/Library/Python/3.9/bin:$PATH"
+  command -v pip3 >/dev/null || {
+    pip install --upgrade pip
+    brew install python
+  }
+}
 
-echo_start "Testing for Homebrew"
-which brew &>/dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; brew update
-echo_success
+# Installs Ansible
+install_ansible() {
+  command -v ansible >/dev/null || pip3 install ansible
+  logr task "Installing Ansible requirements" -- ansible-galaxy install -r requirements.yml
+}
 
-echo_start "Testing for Python3"
-which pip3 &>/dev/null || brew install python
-echo_success
+# Asks for the admin password upfront and keeps sudo alive until the script finishes.
+# shellcheck disable=SC2120
+sudo_forever() {
+  sudo -v
+  while true; do
+    sudo -n true "$@"
+    sleep 60
+    kill -0 "$$" || exit
+  done 2>/dev/null &
+}
 
-echo_start "Testing for Ansible"
-which ansible &>/dev/null || pip3 install ansible
-echo_success
+# Sets up this Mac for development
+main() {
+  [ ! -f .env ] || source .env
 
-echo_start "Installing Ansible requirements"
-ansible-galaxy install -r requirements.yml
-echo_success
+  banr mac dev setup
+  prompt4 Yn '%s\n' "Setting up this Mac for development." -
 
-echo_start "Executing Ansible playbook"
-ansible-playbook main.yml
-echo_success
+  cd "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)" || exit 1
+
+
+#  logr task "Installing Xcode Command Line Tools" -- install_xcode_cli_tools
+  logr task "Testing for Homebrew" -- install_homebrew
+  [ -s "$HOME/bin" ] || ln -s "$PWD/files/bin" "$HOME/bin"
+
+  sudo_forever
+  
+  logr task "Testing for Python3" -- install_python
+  logr task "Testing for Ansible" -- install_ansible
+
+  # install manually until updated to 3.x on homebrew, https://github.com/kcrawford/dockutil/releases/tag/3.0.2
+
+  logr task "Executing Ansible playbook" && ansible-playbook main.yml
+  logr success "Setup completed 🎉"
+}
+
+main "$@"

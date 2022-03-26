@@ -5,18 +5,18 @@ SELF=$(basename "$0")
 
 for SCRIPT in *
 do
-  case "${SCRIPT}" in
+  case "$SCRIPT" in
   *~|*.bak|*${SELF})
-     printf "\n\e[02mSkipping \e[34m${SCRIPT}\e[m\n"
+     printf "\n\e[02mSkipping \e[34m$SCRIPT\e[m\n"
      continue
   ;;
   *)
-     chmod +x "${SCRIPT}"
-     if [ -f "${SCRIPT}" -a -x "${SCRIPT}" ]; then
-       printf "\n\e[01mStarting \e[34m${SCRIPT}\e[m...\n"
-       sh "${SCRIPT}" $@
+     chmod +x "$SCRIPT"
+     if [ -f "$SCRIPT" -a -x "$SCRIPT" ]; then
+       printf "\n\e[01mStarting \e[34m$SCRIPT\e[m...\n"
+       sh "$SCRIPT" "$@"
 	   { set +x; } 2>/dev/null
-       printf "\e[01mFinished \e[34m${SCRIPT}\e[m.\n\n"
+       printf "\e[01mFinished \e[34m$SCRIPT\e[m.\n\n"
      fi
   ;;
   esac
