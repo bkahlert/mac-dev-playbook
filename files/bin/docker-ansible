@@ -1,0 +1,6 @@
+#!/bin/bash
+IMAGE="willhallonline/ansible:2.9-alpine"
+#docker run --rm -it "${IMAGE}" /bin/sh -c "find / -type d | grep "ansible_mitogen/plugins" | sort | head -n 1"
+docker run --rm -it \
+	-v $(pwd):/ansible:ro \
+	--workdir=/ansible ${IMAGE} ansible $@

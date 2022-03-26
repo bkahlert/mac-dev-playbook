@@ -1,0 +1,4 @@
+Cmnd_Alias BALENA_ETCHER = /Applications/balenaEtcher.app/Contents/MacOS/balenaEtcher *
+
+bkahlert ALL=NOPASSWD: BALENA_ETCHER
+
