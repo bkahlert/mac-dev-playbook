@@ -27,6 +27,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+if [ "${DEBUG-}" ]; then
+  printf 'Invocation: %b\n' "$*" >> ~/.ansible-vault-last-client.log
+fi
+
 declare pass_name pass_cmd
 declare -a pass_login_cmd pass_status_cmd pass_query_cmd
 case ${ANSIBLE_VAULT_PASS_CLIENT-} in

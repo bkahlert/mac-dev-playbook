@@ -127,17 +127,20 @@ dotfiles_files:
   - .aliases
   - .bash_profile
   - .bashrc
-  - .config
+  #  - .config
   # - .oh-my-zsh
   - .gitconfig
   - .gitignore
   - .gitignore_global
   - .iterm2_shell_integration.zsh
+  - .nanorc
   - .osx
   - .p10k.zsh
   # - .tmux.conf
   - .whalebrew
   - .zprofile
+  - .zshenv
+  - .zsh
   - .zshrc
 
 # https://github.com/geerlingguy/ansible-collection-mac/blob/master/roles/homebrew/README.md
@@ -157,7 +160,6 @@ homebrew_installed_packages:
   - antigen
   - ag # code search, ignores .gitignore automatically; `ag ...`
   - awscli
-  - aws/tap/aws-sam-cli
   - bat
   - chafa # ANSI art renderer
   - git
@@ -174,6 +176,7 @@ homebrew_installed_packages:
   - lua # required for z.lua
   - maven
   - mcrypt
+  - nano # nano symlinked to pico by default
   - node
   - nvm
   - python
@@ -221,11 +224,13 @@ homebrew_cask_apps:
   - sequel-ace
   - slack
   - transmit
-  - vagrant
-  - vagrant-manager
+  #  - vagrant
+  #  - vagrant-manager
   # - virtualbox
   # - virtualbox-extension-pack
+  - visual-studio-code
   - vlc
+  - steam
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 # https://github.com/geerlingguy/ansible-collection-mac/blob/master/roles/mas/README.md
