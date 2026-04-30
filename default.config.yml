@@ -160,6 +160,7 @@ homebrew_installed_packages:
   - antigen
   - ag # code search, ignores .gitignore automatically; `ag ...`
   - awscli
+  - aws/tap/aws-sam-cli
   - bat
   - chafa # ANSI art renderer
   - git

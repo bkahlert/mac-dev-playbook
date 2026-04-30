@@ -32,6 +32,8 @@ declare doUpdates=true
 
 # sudo until the script has finished
 sudo -v
+
+# Keep-alive sudo until `cleanup.sh` has finished
 while true; do
   sudo -n true
   sleep 60

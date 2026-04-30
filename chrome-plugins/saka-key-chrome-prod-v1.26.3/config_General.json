@@ -1,0 +1,49 @@
+{
+  "options": [
+    {
+      "type": "switch",
+      "label": "Saka Key Enabled",
+      "key": "enabled",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "label": "Prevent Pages from Stealing Focus",
+      "key": "preventStealFocus",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "label": "Disable Page Shortcuts (for unmapped keys)",
+      "key": "disablePageShortcuts",
+      "visible": false,
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "label": "Automatically Active Hint (if there is exactly one)",
+      "key": "autoActivateHint",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "label": "Detect Hints Using Cursor Style",
+      "key": "hintDetectByCursorStyle",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "label": "Smooth Scroll",
+      "key": "smoothScroll",
+      "default": true
+    },
+    {
+      "type": "number",
+      "label": "Scroll Step",
+      "key": "scrollStep",
+      "step": 1,
+      "min": 1,
+      "default": 16
+    }
+  ]
+}

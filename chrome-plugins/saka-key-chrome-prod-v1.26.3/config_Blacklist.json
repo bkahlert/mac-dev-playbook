@@ -1,0 +1,10 @@
+{
+  "options": [
+    {
+      "type": "textarea",
+      "label": "Comma-Separated Regex Blacklist",
+      "key": "blacklist",
+      "default": ""
+    }
+  ]
+}
